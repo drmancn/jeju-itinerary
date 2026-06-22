@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>济州岛 · 初夏深度游计划 | 6.22 - 6.26</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f1eb;
+    color: #2c2416;
+    line-height: 1.8;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a3a4a 0%, #2d5a6e 30%, #4a8fa8 60%, #7ec8e3 100%);
+    color: #fff;
+    padding: 80px 40px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(124,200,227,0.15) 0%, transparent 50%);
+    animation: heroFloat 20s ease-in-out infinite;
+  }
+
+  @keyframes heroFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-2%, 1%); }
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-emoji { font-size: 64px; display: block; margin-bottom: 16px; }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 42px; font-weight: 700;
+    letter-spacing: 4px; margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 18px; font-weight: 300;
+    opacity: 0.85; letter-spacing: 2px;
+  }
+  .hero .dates {
+    margin-top: 24px;
+    display: inline-block;
+    padding: 10px 36px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    font-size: 15px; letter-spacing: 1px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .wave-divider {
+    position: absolute; bottom: -2px; left: 0;
+    width: 100%; height: 60px;
+  }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 60px 0 40px; }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px; font-weight: 600;
+    text-align: center; margin-bottom: 8px;
+    color: #1a3a4a; letter-spacing: 2px;
+  }
+  .section-subtitle {
+    text-align: center;
+    font-size: 14px; color: #8b7e6a;
+    margin-bottom: 36px; letter-spacing: 1px;
+  }
+
+  /* Overview Grid */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin-bottom: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .day-header { flex-direction: column; align-items: flex-start !important; gap: 12px; }
+    .hotel-map { flex-direction: column !important; }
+  }
+
+  .overview-card {
+    background: #fff;
+    border-radius: 16px; padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+  }
+  .overview-card:hover { transform: translateY(-2px); }
+  .overview-icon { font-size: 32px; margin-bottom: 12px; }
+  .overview-card h3 {
+    font-size: 16px; font-weight: 600;
+    color: #1a3a4a; margin-bottom: 6px;
+  }
+  .overview-card p {
+    font-size: 13px; color: #8b7e6a; line-height: 1.6;
+  }
+
+  /* Hotel Card */
+  .hotel-card {
+    background: #fff;
+    border-radius: 20px; padding: 32px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    margin-bottom: 32px;
+  }
+  .hotel-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; font-weight: 600;
+    color: #1a3a4a; margin-bottom: 6px;
+  }
+  .hotel-name-en {
+    font-size: 13px; color: #8b7e6a;
+    letter-spacing: 1px; margin-bottom: 16px;
+  }
+  .hotel-map {
+    display: flex;
+    gap: 24px;
+    margin: 20px 0;
+  }
+  .hotel-nearby {
+    flex: 1;
+    background: #fdfaf5;
+    border-radius: 12px; padding: 20px;
+  }
+  .hotel-nearby h5 {
+    font-size: 13px; font-weight: 600;
+    color: #8b7e6a; margin-bottom: 12px;
+  }
+  .nearby-item {
+    display: flex; align-items: center;
+    gap: 10px; padding: 8px 0;
+    font-size: 13px; color: #4a3f2e;
+    border-bottom: 1px solid #f0ebe0;
+  }
+  .nearby-item:last-child { border-bottom: none; }
+  .nearby-dist {
+    font-size: 11px; color: #e8833a;
+    background: #fef0e5;
+    padding: 2px 8px; border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  /* Day Card */
+  .day-card {
+    background: #fff;
+    border-radius: 20px; margin-bottom: 32px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .day-header {
+    padding: 24px 32px;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0ebe0;
+  }
+  .day-label {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .day-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+    color: #fff; flex-shrink: 0;
+  }
+  .day-num.east   { background: linear-gradient(135deg, #e8833a, #f0a860); }
+  .day-num.west   { background: linear-gradient(135deg, #6b8fbe, #8bb8d0); }
+  .day-num.city   { background: linear-gradient(135deg, #8b6f9e, #b09cc4); }
+  .day-num.coast  { background: linear-gradient(135deg, #5a8f7b, #7db89a); }
+  .day-num.arrive { background: linear-gradient(135deg, #9e9e9e, #bdbdbd); }
+  .day-num.meet   { background: linear-gradient(135deg, #d4a060, #e8c88a); }
+
+  .day-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; font-weight: 600;
+    color: #1a3a4a;
+  }
+  .day-date { font-size: 13px; color: #8b7e6a; }
+  .day-theme {
+    font-size: 13px; color: #8b7e6a;
+    padding: 6px 16px; background: #f5f1eb;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .day-body { padding: 28px 32px; }
+  .day-note {
+    margin-top: 16px; padding: 14px 18px;
+    background: #fff9f0;
+    border-radius: 10px;
+    border: 1px solid #f0e0c0;
+    font-size: 13px; color: #8b6e3a;
+    line-height: 1.7;
+  }
+
+  .timeline-item {
+    display: flex; gap: 18px;
+    padding: 12px 0;
+    border-left: 2px solid #f0ebe0;
+    margin-left: 8px; padding-left: 24px;
+    position: relative;
+  }
+  .timeline-item:last-child { border-left-color: transparent; }
+
+  .timeline-dot {
+    position: absolute; left: -7px; top: 16px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #d4c8b0;
+    border: 2px solid #f5f1eb;
+  }
+  .timeline-dot.highlight {
+    background: #e8833a;
+    border-color: #fef0e5;
+    box-shadow: 0 0 0 4px rgba(232,131,58,0.12);
+  }
+  .timeline-dot.meeting {
+    background: #d4a060;
+    border-color: #fff9f0;
+  }
+
+  .timeline-time {
+    font-size: 13px; font-weight: 600;
+    color: #8b7e6a; min-width: 56px; padding-top: 2px;
+  }
+  .timeline-content h4 {
+    font-size: 15px; font-weight: 600;
+    color: #2c2416; margin-bottom: 4px;
+  }
+  .timeline-content p {
+    font-size: 13px; color: #6b5e4a; line-height: 1.7;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; margin-right: 6px;
+  }
+  .tag-must    { background: #fef0e5; color: #d4782f; }
+  .tag-photo   { background: #e8f0f8; color: #5a8aaf; }
+  .tag-food    { background: #f0e8f0; color: #8b6f9e; }
+  .tag-relax   { background: #e8f5ee; color: #5a8f7b; }
+  .tag-flower  { background: #fce4ec; color: #c0607a; }
+  .tag-backup  { background: #fff3e0; color: #b0853a; }
+  .tag-meeting { background: #fff8e8; color: #b08030; }
+  .tag-local   { background: #f5f0e8; color: #6b5e4a; }
+  .tag-hotel   { background: #e8f0f0; color: #4a7a8a; }
+
+  .food-note {
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: #fdfaf5;
+    border-radius: 12px;
+    border-left: 3px solid #e8833a;
+  }
+  .food-note h5 {
+    font-size: 13px; font-weight: 600;
+    color: #8b7e6a; margin-bottom: 6px;
+  }
+  .food-note p {
+    font-size: 13px; color: #6b5e4a; line-height: 1.7;
+  }
+
+  /* Info Boxes */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-bottom: 20px;
+  }
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .info-box {
+    background: #fff;
+    border-radius: 16px; padding: 24px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .info-box .icon { font-size: 28px; margin-bottom: 10px; }
+  .info-box h4 {
+    font-size: 14px; font-weight: 600;
+    color: #1a3a4a; margin-bottom: 6px;
+  }
+  .info-box p {
+    font-size: 12px; color: #8b7e6a; line-height: 1.6;
+  }
+
+  .tips-list {
+    background: #fff;
+    border-radius: 16px; padding: 28px 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .tips-list li {
+    font-size: 14px; color: #4a3f2e;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f1eb;
+    list-style: none;
+    padding-left: 20px; position: relative;
+  }
+  .tips-list li::before {
+    content: '·';
+    position: absolute; left: 4px; top: 10px;
+    font-weight: 700; color: #e8833a; font-size: 18px;
+  }
+  .tips-list li:last-child { border-bottom: none; }
+  .highlight-text { color: #e8833a; font-weight: 500; }
+
+  .footer {
+    text-align: center; padding: 48px 24px;
+    color: #8b7e6a; font-size: 13px;
+  }
+  .footer .divider {
+    width: 60px; height: 2px;
+    background: #d4c8b0; margin: 0 auto 20px;
+  }
+
+  .route-visual {
+    background: #fff;
+    border-radius: 16px; padding: 32px;
+    margin-top: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    text-align: center;
+  }
+
+  /* Hotel highlight bar */
+  .hotel-bar {
+    background: linear-gradient(135deg, #e8f0f0, #f5f8f8);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hotel-bar .hotel-emoji { font-size: 32px; }
+  .hotel-bar h4 { font-size: 15px; font-weight: 600; color: #1a3a4a; }
+  .hotel-bar p { font-size: 12px; color: #6b5e4a; margin-top: 2px; }
+
+  /* ========== 打印样式 ========== */
+  @media print {
+    @page {
+      size: A4;
+      margin: 14mm 16mm 14mm 16mm;
+    }
+
+    /* 第一页特殊：hero 上下无边距 */
+    @page :first {
+      margin-top: 0;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 11.5px;
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    /* ===== 第一页：Hero 独占首页 ===== */
+    .hero {
+      background: #1a3a4a !important;
+      color: #fff !important;
+      /* 填满第一页 */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      position: relative;
+      page-break-after: always;
+    }
+    .hero::before { display: none; }
+    .hero .wave-divider { display: none; }
+    .hero-emoji { font-size: 56px; margin-bottom: 16px; }
+    .hero h1 { font-size: 36px; letter-spacing: 6px; margin-bottom: 12px; }
+    .hero .subtitle { font-size: 16px; letter-spacing: 3px; }
+    .hero .dates {
+      font-size: 13px;
+      margin-top: 20px;
+      padding: 8px 32px;
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ===== 分页规则：每个大板块新起一页 ===== */
+    .section {
+      padding: 0 0 18px;
+      page-break-before: always;
+    }
+    /* 第一个 section（酒店信息）紧接 hero 之后，不另起页 */
+    .section:first-of-type {
+      page-break-before: auto;
+      padding-top: 18px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 2px;
+      letter-spacing: 2px;
+      padding-top: 0;
+    }
+    .section-subtitle {
+      font-size: 12px;
+      margin-bottom: 16px;
+      color: #8b7e6a;
+    }
+
+    /* ===== 酒店信息栏 ===== */
+    .hotel-bar {
+      background: #f5f8f8;
+      padding: 12px 16px;
+      margin-bottom: 0;
+      border: 1px solid #d8dcdc;
+      page-break-after: always;
+    }
+    .hotel-bar .hotel-emoji { font-size: 28px; }
+    .hotel-bar h4 { font-size: 14px; }
+    .hotel-bar p { font-size: 11px; }
+
+    /* ===== 概览卡片 ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      page-break-inside: avoid;
+    }
+    .overview-card {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      padding: 14px 10px;
+      background: #fff;
+    }
+    .overview-card:hover { transform: none; }
+    .overview-icon { font-size: 22px; margin-bottom: 4px; }
+    .overview-card h3 { font-size: 11px; margin-bottom: 2px; }
+    .overview-card p { font-size: 10px; line-height: 1.4; }
+
+    /* ===== 出行须知整页 ===== */
+    .info-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      page-break-inside: avoid;
+    }
+    .info-box {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      padding: 14px 10px;
+      background: #fafaf8;
+    }
+    .info-box .icon { font-size: 20px; margin-bottom: 4px; }
+    .info-box h4 { font-size: 11px; }
+    .info-box p { font-size: 10px; line-height: 1.4; }
+
+    .tips-list {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      padding: 14px 18px;
+      page-break-inside: avoid;
+      margin-top: 12px;
+    }
+    .tips-list li {
+      font-size: 11px;
+      padding: 5px 0 5px 14px;
+      border-bottom: 1px solid #f0ebe0;
+    }
+    .tips-list li::before { font-size: 12px; top: 5px; }
+
+    /* ===== 酒店周边地图 ===== */
+    .hotel-card {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 0;
+      page-break-inside: avoid;
+    }
+    .hotel-card h3 { font-size: 15px; }
+    .hotel-name-en { font-size: 10px; margin-bottom: 8px; }
+    .hotel-map { gap: 14px; }
+    .hotel-nearby { padding: 10px; background: #fafaf8; }
+    .hotel-nearby h5 { font-size: 11px; margin-bottom: 6px; }
+    .nearby-item { font-size: 10px; padding: 4px 0; }
+    .nearby-dist { font-size: 9px; padding: 1px 5px; }
+
+    /* ===== 每日行程 —— 每天一张或两张 ===== */
+    /* 周三周四内容多，允许分页；周二周五尽量一整页 */
+    .day-card {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      page-break-inside: auto;   /* 允许内容多的卡片跨页 */
+    }
+    /* 到达日卡片尽量不跨页 */
+    .day-card[style*="opacity"] {
+      page-break-inside: avoid;
+    }
+
+    .day-header {
+      padding: 12px 18px;
+      background: #fafaf8;
+      border-bottom: 1px solid #e0dcd5;
+    }
+    .day-num {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .day-title { font-size: 15px; }
+    .day-date { font-size: 10px; }
+    .day-theme {
+      font-size: 10px;
+      padding: 3px 10px;
+      background: #f5f1eb;
+    }
+    .day-body { padding: 14px 18px; }
+
+    /* ===== 时间线 ===== */
+    .timeline-item {
+      padding: 6px 0;
+      border-left-color: #ddd;
+      margin-left: 5px;
+      padding-left: 16px;
+      gap: 10px;
+      page-break-inside: avoid;
+    }
+    .timeline-dot {
+      width: 7px; height: 7px;
+      left: -4px; top: 10px;
+    }
+    .timeline-time {
+      font-size: 10px;
+      min-width: 38px;
+    }
+    .timeline-content h4 { font-size: 12px; margin-bottom: 2px; }
+    .timeline-content p { font-size: 10px; line-height: 1.5; }
+
+    /* ===== 标签 ===== */
+    .tag {
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ===== 食物推荐 ===== */
+    .food-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #fafaf8;
+      border-left: 3px solid #d4a060;
+      border-radius: 6px;
+      page-break-inside: avoid;
+    }
+    .food-note h5 { font-size: 11px; }
+    .food-note p { font-size: 10px; line-height: 1.5; }
+
+    /* ===== 每日备注 ===== */
+    .day-note {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #fffef8;
+      border: 1px solid #ece0c0;
+      border-radius: 6px;
+      font-size: 10px;
+      line-height: 1.5;
+      page-break-inside: avoid;
+    }
+
+    /* ===== 路线示意 ===== */
+    .route-visual {
+      box-shadow: none;
+      border: 1px solid #e0dcd5;
+      border-radius: 8px;
+      padding: 18px;
+      page-break-inside: avoid;
+    }
+    .route-visual svg { max-width: 440px; }
+
+    /* ===== 尾部 ===== */
+    .footer {
+      padding: 20px 24px 12px;
+      font-size: 10px;
+      page-break-before: always;
+    }
+    .footer .divider { margin-bottom: 10px; }
+
+    /* ===== 全局细节 ===== */
+    * { animation: none !important; transition: none !important; }
+    body { -webkit-font-smoothing: antialiased; }
+
+    /* 防止孤立的一两行 */
+    p, li, h4, h5 { orphans: 2; widows: 2; }
+
+    .highlight-text { color: #c06a2a; font-weight: 500; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-emoji">🌋🌊</span>
+    <h1>济州岛 · 初夏深度游</h1>
+    <p class="subtitle">慢下来，感受火山岛的呼吸</p>
+    <div class="dates">6.22 抵达 — 6.26 返程 · 绣球花季</div>
+  </div>
+  <svg class="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,60 L0,60 Z" fill="#f5f1eb"/>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- 酒店信息 -->
+  <div class="section" style="padding-top: 40px; padding-bottom: 20px;">
+    <div class="hotel-bar">
+      <div class="hotel-emoji">🏨</div>
+      <div>
+        <h4>全程入住：口哨云雀酒店</h4>
+        <p>Hotel Whistlelark Jeju · 济州市中心塔洞海滨 · 楼下即海岸步道</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 概览 -->
+  <div class="section" style="padding-top: 0;">
+    <h2 class="section-title">行程总览</h2>
+    <p class="section-subtitle">2 个整天深度游 + 酒店周边探索 + 轻松收尾</p>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-icon">🏨</div>
+        <h3>Day 1 · 周二 · 酒店周边</h3>
+        <p>塔洞海岸 + 龙头岩 + 东门市场<br>会议间隙的碎片探索</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🌅</div>
+        <h3>Day 2 · 周三 · 东部</h3>
+        <p>城山日出峰 + 涉地可支<br>世界遗产海岸线深度游</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🌸</div>
+        <h3>Day 3 · 周四 · 西部</h3>
+        <p>绣球花海 + 偶来市场<br>海岸咖啡馆治愈之旅</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🛍️</div>
+        <h3>Day 4 · 周五 · 收尾</h3>
+        <p>海边早餐 + 轻松前往机场<br>满载回忆而归</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 出行须知 -->
+  <div class="section" style="padding-top: 20px;">
+    <h2 class="section-title">出行须知</h2>
+    <p class="section-subtitle">6 月济州 · 绣球花盛开的梅雨季</p>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="icon">🌡️</div>
+        <h4>气温</h4>
+        <p>18°C — 26°C<br>早晚微凉，带薄外套</p>
+      </div>
+      <div class="info-box">
+        <div class="icon">🌧️</div>
+        <h4>天气</h4>
+        <p>梅雨季，阵雨频繁<br>随时带晴雨伞</p>
+      </div>
+      <div class="info-box">
+        <div class="icon">🌸</div>
+        <h4>花期</h4>
+        <p>绣球花全盛期<br>此行最大亮点</p>
+      </div>
+      <div class="info-box">
+        <div class="icon">🚗</div>
+        <h4>交通</h4>
+        <p>周三周四建议包车<br>约600-800元/天</p>
+      </div>
+    </div>
+
+    <div class="tips-list" style="margin-top: 20px;">
+      <li><span class="highlight-text">必带：</span>护照（免签30天）、晴雨伞、薄外套、舒适步行鞋、防晒霜、转换插头（圆头）</li>
+      <li><span class="highlight-text">交通：</span>周三周四建议包车/租车自驾；周二/周五酒店周边步行即可，不需要车</li>
+      <li><span class="highlight-text">住宿：</span>全程入住口哨云雀酒店（Whistlelark），济州市中心塔洞海滩旁，楼下就是海岸步道</li>
+      <li><span class="highlight-text">签证：</span>中国公民免签入境，停留不超过30天</li>
+    </div>
+  </div>
+
+  <!-- 酒店周边 -->
+  <div class="section">
+    <h2 class="section-title">酒店周边地图</h2>
+    <p class="section-subtitle">口哨云雀酒店 · 济州市塔洞海滨 · 步行可达一切</p>
+
+    <div class="hotel-card">
+      <h3>🏨 口哨云雀酒店</h3>
+      <p class="hotel-name-en">Hotel Whistlelark Jeju, by Best Western</p>
+
+      <div class="hotel-map">
+        <div class="hotel-nearby">
+          <h5>🚶 步行可达</h5>
+          <div class="nearby-item">
+            <span>🌊 塔洞海滩广场</span>
+            <span class="nearby-dist">楼下</span>
+          </div>
+          <div class="nearby-item">
+            <span>🎵 塔洞海滨音乐厅</span>
+            <span class="nearby-dist">3分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🐲 龙头岩 (Yongduam)</span>
+            <span class="nearby-dist">12分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🏛️ 东门市场</span>
+            <span class="nearby-dist">9分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🐟 济州海底世界</span>
+            <span class="nearby-dist">5分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🌉 三姓穴/山地川</span>
+            <span class="nearby-dist">15分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🏪 便利店 (CU/7-11)</span>
+            <span class="nearby-dist">2分钟</span>
+          </div>
+        </div>
+        <div class="hotel-nearby">
+          <h5>🚗 短途车程</h5>
+          <div class="nearby-item">
+            <span>✈️ 济州国际机场</span>
+            <span class="nearby-dist">15分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🏖️ 三阳黑沙滩</span>
+            <span class="nearby-dist">10分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>🏛️ 济州国立博物馆</span>
+            <span class="nearby-dist">8分钟</span>
+          </div>
+          <div class="nearby-item">
+            <span>⛰️ 汉拿山登山口</span>
+            <span class="nearby-dist">30分钟</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size: 12px; color: #8b7e6a; margin-top: 8px;">
+        💡 酒店大堂免费提供咖啡、热巧和牛奶；门口有免费接驳电瓶车到巷口
+      </p>
+    </div>
+  </div>
+
+  <!-- ====== 每日行程 ====== -->
+  <div class="section">
+    <h2 class="section-title">每日行程</h2>
+    <p class="section-subtitle">深度体验，不赶路，感受路上的风景</p>
+
+    <!-- Day 0: 周一到达 -->
+    <div class="day-card" style="opacity: 0.85;">
+      <div class="day-header">
+        <div class="day-label">
+          <div class="day-num arrive">到</div>
+          <div>
+            <div class="day-title">到达日 · 安顿与初探</div>
+            <div class="day-date">6月22日 周一 晚上</div>
+          </div>
+        </div>
+        <div class="day-theme">✈️ 抵达济州</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">晚上</div>
+          <div class="timeline-content">
+            <h4>抵达济州国际机场 → 入住酒店 <span class="tag tag-hotel">酒店</span></h4>
+            <p>机场到口哨云雀酒店仅15分钟车程，Kakao T 打车约8000韩元。入住后下楼就是塔洞海岸步道，吹海风散步放松。附近 CU 便利店买点零食和水。</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">夜</div>
+          <div class="timeline-content">
+            <h4>塔洞海岸夜间散步 <span class="tag tag-relax">治愈</span></h4>
+            <p>从酒店沿海岸步道往北走，路过塔洞音乐厅，吹着海风看济州港夜景。如果饿了，龙头岩附近有生鱼片一条街，或者走9分钟到东门市场夜市。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 1: 周二 酒店周边 + 会议 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-label">
+          <div class="day-num meet">1</div>
+          <div>
+            <div class="day-title">酒店周边 · 会议间隙探索</div>
+            <div class="day-date">6月23日 周二</div>
+          </div>
+        </div>
+        <div class="day-theme">🏨 碎片时间的深度发现</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">8:00</div>
+          <div class="timeline-content">
+            <h4>塔洞海岸晨间漫步 <span class="tag tag-relax">治愈</span> <span class="tag tag-photo">出片</span></h4>
+            <p>酒店楼下就是塔洞海滩广场，早上人少安静。沿海岸步道走到龙头岩方向，晨光下的黑礁石和蔚蓝海水是济州最经典的画面。沿途喂喂海鸥，感受海岛清晨。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">9:00</div>
+          <div class="timeline-content">
+            <h4>东门市场早餐 <span class="tag tag-food">美食</span> <span class="tag tag-must">必去</span></h4>
+            <p>酒店步行9分钟就到济州最大传统市场。早晨最本地：红豆鱼饼、黑猪肉包子、橘子果汁、热腾腾的炒年糕。边逛边吃，9点前人少不用排队。顺便瞄一眼夜市摊位位置，晚上再来。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <h4>龙头岩 <span class="tag tag-must">必去</span> <span class="tag tag-photo">出片</span></h4>
+            <p>从东门市场沿海岸步道往北走约15分钟，就能看到这个济州岛标志——10米高的火山岩酷似龙头探入海中。清晨或上午光线最适合拍照，游客也比下午少。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot meeting"></div>
+          <div class="timeline-time">12:00</div>
+          <div class="timeline-content">
+            <h4>午餐会议 <span class="tag tag-meeting">会议</span></h4>
+            <p>可在酒店或附近餐厅进行。推荐酒店附近的塔洞海鲜一条街，或者东门市场打包一些小吃回酒店。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <h4>会议间隙：山地川 / 济州牧官衙 <span class="tag tag-local">本地</span> <span class="tag tag-relax">治愈</span></h4>
+            <p>如果下午会议之间有1-2小时空档，推荐沿山地川（Sanjicheon）溪边散步，或者参观济州牧官衙（朝鲜时代地方官署遗址），都在酒店步行15分钟范围内，闹中取静。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot meeting"></div>
+          <div class="timeline-time">18:00</div>
+          <div class="timeline-content">
+            <h4>晚间会议 <span class="tag tag-meeting">会议</span></h4>
+            <p>会后如果有精力——</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">会后</div>
+          <div class="timeline-content">
+            <h4>东门市场夜市 <span class="tag tag-food">美食</span> <span class="tag tag-must">必去</span></h4>
+            <p>白天的市场和晚上的夜市完全是两个世界！灯光亮起，小吃摊位全开，烤黑猪肉串、橘子汁、炸鸡啤酒——济州最有烟火气的地方。9分钟走回酒店，吃撑了也不怕。</p>
+          </div>
+        </div>
+
+        <div class="day-note">
+          💡 <strong>周二核心逻辑：</strong>酒店位置绝佳，步行圈覆盖济州市区最精华的景点和美食。不需要车，会议间隙随时出门探索。东门市场可以多次造访——早上看本地人买菜，晚上感受夜市烟火，两种味道都值得体验。
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2: 周三 东部 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-label">
+          <div class="day-num east">2</div>
+          <div>
+            <div class="day-title">东部 · 世界遗产海岸线</div>
+            <div class="day-date">6月24日 周三</div>
+          </div>
+        </div>
+        <div class="day-theme">🌅 一整天深度游</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">9:00</div>
+          <div class="timeline-content">
+            <h4>出发前往东部 <span class="tag tag-hotel">路程</span></h4>
+            <p>酒店出发，驾车约1小时到达城山日出峰。沿途济州东部海岸线很美，可以在细花里或月汀里海边短暂停留拍照。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <h4>城山日出峰 <span class="tag tag-must">必去</span> <span class="tag tag-photo">出片</span></h4>
+            <p>联合国世界自然遗产，火山喷发形成的巨大碗状火山口。不需要赶日出——上午光线柔和，游客适中，登顶约30分钟，山顶俯瞰海岸线美到窒息。山下有海女表演（11:30/13:30各一场），花1万韩元尝现捞鲍鱼刺身。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <h4>城山港海鲜午餐 <span class="tag tag-food">美食</span></h4>
+            <p>港口附近的海鲜锅、鲍鱼粥是济州特色。推荐「海女之家」或港口旁的家庭餐厅，新鲜上岸的海产。也可以去城山日出峰入口处的餐厅群。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-content">
+            <h4>涉地可支 <span class="tag tag-must">必去</span> <span class="tag tag-photo">出片</span></h4>
+            <p>悬崖、黑礁石、翡翠色海浪——济州最震撼的海岸线。《蓝色大海的传说》取景地，走到尽头的 <strong>Glass House</strong>（安藤忠雄设计），360度玻璃观景台俯瞰惊涛拍岸，内部还有 Mint 餐厅和咖啡馆。建议停留1.5-2小时，慢慢走慢慢拍。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-content">
+            <h4>牛岛（天气允许） <span class="tag tag-backup">备选</span> <span class="tag tag-photo">出片</span></h4>
+            <p>从城山港乘船15分钟。租电动自行车环岛骑行（约1.5-2小时），花生冰淇淋必尝。⚠️ 6月风浪大，渡轮可能停航，出行前确认。末班船一般在17:00-18:00，注意时间。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">—</div>
+          <div class="timeline-content">
+            <h4>牛岛停航替代 <span class="tag tag-backup">备选</span></h4>
+            <p>如果不去牛岛，涉地可支可以多待一会儿 → 海女博物馆 → 城邑民俗村（保留完好的济州传统石屋村落，《大长今》取景地），节奏更慢，文化厚度更足。</p>
+          </div>
+        </div>
+
+        <div class="food-note">
+          <h5>🍽️ 晚餐推荐</h5>
+          <p><strong>济州黑猪肉 BBQ</strong> — 回程路上或济州市区。推荐「黑豚家」（흑돈가）或「Myeongjin Jeonbok」（명진전복，鲍鱼料理专门店）。黑猪肉是济州岛的标志，油脂分布均匀，烤到微焦蘸盐就是顶级享受。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3: 周四 西部 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-label">
+          <div class="day-num west">3</div>
+          <div>
+            <div class="day-title">西部 · 绣球花 + 海岸治愈</div>
+            <div class="day-date">6月25日 周四</div>
+          </div>
+        </div>
+        <div class="day-theme">🌸☕ 六月最高光的一天</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">9:30</div>
+          <div class="timeline-content">
+            <h4>山茶花之丘 (Camellia Hill) <span class="tag tag-must">必去</span> <span class="tag tag-flower">绣球花</span> <span class="tag tag-photo">出片</span></h4>
+            <p><strong>此行最大的亮点！</strong>6月正值绣球花全盛期，超千株蓝、粉、白、紫绣球花铺满整个园区。温室后方的「梦幻花海」区域是最佳拍摄点，韩式庭院随手拍都是明信片。建议慢慢逛<strong>2-3小时</strong>，不要赶——这是此行最值得花时间的地方。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <h4>西归浦每日偶来市场 <span class="tag tag-must">必去</span> <span class="tag tag-food">美食</span></h4>
+            <p>从山茶花之丘驱车约25分钟到西归浦。济州最地道的美食市场！<strong>必吃三件套：</strong>黑猪肉串（흑돼지꼬치）+ 现榨汉拿峰橙汁 + 烤鲍鱼。还有红豆鱼形饼、橘子巧克力做手信。周四下午正好人不多不少，体验最佳。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <h4>O'sulloc 雪绿茶博物馆（可选） <span class="tag tag-relax">治愈</span></h4>
+            <p>济州最大绿茶园，抹茶冰淇淋、绿茶拿铁是招牌。旁边的 Innisfree Jeju House 可以 DIY 手工皂。茶园免费，绿意盎然极度舒适。如果不想赶路，可以跳过直接去咖啡街，给自己更多发呆时间。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">15:30</div>
+          <div class="timeline-content">
+            <h4>涯月邑咖啡街 <span class="tag tag-must">必去</span> <span class="tag tag-relax">治愈</span> <span class="tag tag-photo">出片</span></h4>
+            <p>济州最美的海滨咖啡街——果冻海配黑礁石，随便一家咖啡馆都值得发呆一下午。推荐：<strong>Bomnal Café</strong>（春日咖啡，韩剧取景地，沿海石墙庭院）、<strong>Premium Café</strong>（270度落地窗海景）。点杯咖啡看海浪拍到礁石上溅起白沫——这才是济州正确的打开方式。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">日落</div>
+          <div class="timeline-content">
+            <h4>涯月海边日落 <span class="tag tag-photo">出片</span></h4>
+            <p>在咖啡馆待到日落——涯月的日落是济州最美的之一。太阳从果冻海面缓缓沉下，黑礁石被染成金色，远处汉拿山的剪影若隐若现。这一刻值得所有赶路。</p>
+          </div>
+        </div>
+
+        <div class="food-note">
+          <h5>🍽️ 晚餐推荐</h5>
+          <p><strong>涯月海鲜 or 回市区</strong> — 涯月海边有不少海鲜餐厅，推荐辣炖带鱼（갈치조림）和海鲜拉面。或者开车回济州市区，去吃「熟成道」（숙성도）的济州银带鱼料理——烤带鱼和炖带鱼都是绝品。离开济州前最后一顿正餐，值得好好对待。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4: 周五 收尾 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-label">
+          <div class="day-num city">4</div>
+          <div>
+            <div class="day-title">市区 · 轻松收尾</div>
+            <div class="day-date">6月26日 周五 上午</div>
+          </div>
+        </div>
+        <div class="day-theme">🛍️ 最后的济州时光</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-dot highlight"></div>
+          <div class="timeline-time">8:30</div>
+          <div class="timeline-content">
+            <h4>塔洞海岸最后的晨间散步 <span class="tag tag-relax">治愈</span></h4>
+            <p>在酒店楼下的海岸步道走最后一圈，呼吸济州的空气。酒店大堂喝杯免费咖啡，享受慢下来的早晨。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">9:00</div>
+          <div class="timeline-content">
+            <h4>东门市场最后采购 <span class="tag tag-food">美食</span> <span class="tag tag-must">必去</span></h4>
+            <p>如果周二没买够手信，现在补货。橘子巧克力、汉拿峰烧酒、海苔、马油护肤品价格都比机场便宜30%-50%。顺便解决早餐——黑猪肉包子 + 一杯现榨橘子汁。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-content">
+            <h4>返回酒店收拾行李</h4>
+            <p>9分钟走回酒店，收拾行李退房。</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <h4>前往机场 <span class="tag tag-hotel">路程</span></h4>
+            <p>酒店到济州机场仅15分钟。机场不大，提前1-1.5小时到达即可。免税店建议在APP提前下单，机场提货更省时间。</p>
+          </div>
+        </div>
+
+        <div class="day-note">
+          💡 <strong>如果还想多看一个景点：</strong>可以7:30出发去柱状节理带（中文观光区，40分钟车程），看半小时然后9:30返回酒店。但建议留下来享受轻松的早晨，济州不适合赶路。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 美食汇总 -->
+  <div class="section">
+    <h2 class="section-title">必吃清单</h2>
+    <p class="section-subtitle">不尝遍这些，等于没来过济州</p>
+
+    <div class="tips-list">
+      <li><strong>🥩 济州黑猪肉 BBQ</strong> — 油脂丰腴，微焦蘸盐是灵魂。推荐：黑豚家、Myeongjin Jeonbok</li>
+      <li><strong>🦪 鲍鱼料理</strong> — 鲍鱼粥、鲍鱼刺身、烤鲍鱼。城山日出峰下的海女现捞最新鲜</li>
+      <li><strong>🐟 银带鱼</strong> — 济州特产，烤带鱼或辣炖带鱼。推荐：熟成道（숙성도）</li>
+      <li><strong>🍊 汉拿峰柑橘</strong> — 酸甜浓郁。果汁、巧克力、烧酒都是好手信</li>
+      <li><strong>🍜 猪肉汤面（고기국수）</strong> — 济州人的 soul food，偶来市场附近随处可找</li>
+      <li><strong>🍦 花生冰淇淋</strong> — 牛岛特产（如果能上岛的话）</li>
+      <li><strong>🍵 绿茶甜品</strong> — O'sulloc 的抹茶冰淇淋和绿茶拿铁</li>
+    </div>
+  </div>
+
+  <!-- 雨天弹性方案 -->
+  <div class="section">
+    <h2 class="section-title">雨天弹性方案</h2>
+    <p class="section-subtitle">梅雨季不可怕，换个方式感受济州</p>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-icon">🧸</div>
+        <h3>泰迪熊博物馆</h3>
+        <p>全球最大泰迪熊主题馆，韩剧《星你》同款太空熊。中文观光区内，雨天绝佳选择。</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🛁</div>
+        <h3>山房山碳酸温泉</h3>
+        <p>济州唯一的碳酸温泉，雨中泡汤比晴天更有意境。</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">🏛️</div>
+        <h3>济州民俗自然史博物馆</h3>
+        <p>了解济州火山地质和海女文化，丰富旅行的文化层次。</p>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">☕</div>
+        <h3>室内咖啡馆听雨</h3>
+        <p>涯月的海景咖啡馆雨天更有氛围。超大落地窗，听雨看海，舒服安逸。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 路线示意 -->
+  <div class="section">
+    <h2 class="section-title">路线示意</h2>
+    <p class="section-subtitle">酒店为据点，每天辐射一个方向</p>
+
+    <div class="route-visual">
+      <svg viewBox="0 0 680 340" style="max-width: 600px; width: 100%;">
+        <ellipse cx="340" cy="180" rx="280" ry="150" fill="#f5f1eb" stroke="#d4c8b0" stroke-width="2" stroke-dasharray="8,4"/>
+
+        <!-- Hallasan -->
+        <polygon points="340,100 310,180 370,180" fill="#c8d8c0" stroke="#a0b898" stroke-width="1.5"/>
+        <text x="340" y="138" text-anchor="middle" font-size="10" fill="#6b8b5a">汉拿山</text>
+
+        <!-- Hotel (center-north coast) -->
+        <rect x="310" y="50" width="60" height="24" rx="12" fill="#1a3a4a" stroke="#fff" stroke-width="2"/>
+        <text x="340" y="66" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">🏨 酒店</text>
+
+        <!-- Day 1: Hotel area (coastline north) -->
+        <circle cx="340" cy="45" r="22" fill="none" stroke="#d4a060" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="340" y="34" text-anchor="middle" font-size="9" fill="#d4a060" font-weight="600">Day1</text>
+        <text x="340" y="80" text-anchor="middle" font-size="8" fill="#8b7e6a">龙头岩·市场</text>
+
+        <!-- Day 2: East -->
+        <circle cx="555" cy="125" r="28" fill="#fef0e5" stroke="#e8833a" stroke-width="2"/>
+        <text x="555" y="123" text-anchor="middle" font-size="11" fill="#e8833a" font-weight="600">Day2</text>
+        <text x="555" y="137" text-anchor="middle" font-size="9" fill="#8b7e6a">日出峰·涉地可支</text>
+
+        <!-- Day 3: West coastal route -->
+        <path d="M200,155 L200,240 L280,290" fill="none" stroke="#6b8fbe" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
+        <circle cx="200" cy="155" r="16" fill="#e8f0f8" stroke="#6b8fbe" stroke-width="1.5"/>
+        <text x="200" y="159" text-anchor="middle" font-size="8" fill="#6b8fbe" font-weight="600">绣球花</text>
+        <circle cx="310" cy="285" r="12" fill="#e8f0f8" stroke="#6b8fbe" stroke-width="1"/>
+        <text x="310" y="303" text-anchor="middle" font-size="7" fill="#6b8fbe">偶来市场</text>
+        <circle cx="180" cy="145" r="28" fill="none" stroke="#6b8fbe" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="180" y="120" text-anchor="middle" font-size="10" fill="#6b8fbe" font-weight="600">Day3</text>
+        <text x="180" y="175" text-anchor="middle" font-size="8" fill="#8b7e6a">涯月咖啡日落</text>
+
+        <!-- Day 4: City wrap -->
+        <text x="350" y="95" text-anchor="middle" font-size="9" fill="#8b6f9e" font-weight="600">Day4 收尾</text>
+
+        <!-- Connecting arcs -->
+        <path d="M340,55 Q440,80 555,125" fill="none" stroke="#e8833a" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+        <path d="M340,55 Q260,90 200,155" fill="none" stroke="#6b8fbe" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+
+        <!-- Airport -->
+        <rect x="295" y="32" width="40" height="14" rx="7" fill="#fff" stroke="#8b6f9e" stroke-width="1"/>
+        <text x="315" y="42" text-anchor="middle" font-size="8" fill="#8b6f9e">✈️ 机场</text>
+
+        <!-- Udo -->
+        <circle cx="600" cy="108" r="12" fill="#fff" stroke="#d4c8b0" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="600" y="112" text-anchor="middle" font-size="7" fill="#8b7e6a">牛岛</text>
+
+        <!-- compass -->
+        <text x="630" y="195" font-size="22">🧭</text>
+      </svg>
+      <p style="font-size: 12px; color: #8b7e6a; margin-top: 8px;">以酒店为据点 · 每天一个方向 · 不走回头路</p>
+    </div>
+  </div>
+
+  <!-- 实用贴士 -->
+  <div class="section">
+    <h2 class="section-title">实用锦囊</h2>
+    <p class="section-subtitle">让旅途更顺心的小技巧</p>
+
+    <div class="tips-list">
+      <li><strong>📱 App 必备：</strong>KakaoMap / Naver Map（谷歌地图在韩国不好用）、Papago（翻译神器）、Kakao T（叫车）</li>
+      <li><strong>💳 支付：</strong>大部分地方接受信用卡，传统市场和路边摊需现金。建议换2000人民币等值韩元</li>
+      <li><strong>📶 网络：</strong>提前在淘宝买韩国SIM卡或出境WiFi蛋，落地即用</li>
+      <li><strong>🚗 包车/租车：</strong>周三周四两天需要车。包车约600-800元/天（中文司机），租车约200-300元/天（需国际驾照IDP）。周二和周五酒店周边步行即可，不需要车</li>
+      <li><strong>🕐 午餐注意：</strong>大部分餐厅下午15:00-17:00休息，午餐最好在13:00前解决</li>
+      <li><strong>🗣️ 语言：</strong>旅游区有中英文标识，但带Papago更从容。学一句 감사합니다（谢谢）很加分</li>
+      <li><strong>🍊 手信：</strong>东门市场 > 机场免税店，价格低30%-50%。橘子巧克力买「汉拿峰」品牌</li>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="divider"></div>
+    <p>제주도 · 济州岛 · Jeju Island</p>
+    <p style="margin-top: 4px; opacity: 0.6;">放慢脚步，火山岛会告诉你它的故事 🌋🌊🌸</p>
+    <p style="margin-top: 16px; font-size: 11px; opacity: 0.5;">行程基于 2026年6月实况整理 · 出发前请再次确认天气和景点开放状态</p>
+  </div>
+</div>
+
+</body>
+</html>
