@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제주도 여행 일정 / 济州岛行程 · 운전기사용</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'Noto Sans KR', -apple-system, sans-serif;
+    background: #f8f6f2;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    background: linear-gradient(135deg, #1a3a4a, #2d6a8a);
+    color: #fff;
+    padding: 36px 28px 32px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 26px; letter-spacing: 2px; margin-bottom: 6px; }
+  .header h2 { font-size: 20px; font-weight: 400; opacity: 0.9; margin-bottom: 12px; }
+  .header .hotel { font-size: 14px; opacity: 0.8; }
+  .header .hotel .ko { font-size: 16px; opacity: 1; font-weight: 500; }
+
+  /* ===== Phrase Card ===== */
+  .phrase-card {
+    background: #fff;
+    border: 2px solid #e8833a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .phrase-card h3 {
+    font-size: 15px; color: #e8833a;
+    margin-bottom: 12px;
+  }
+  .phrase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .phrase-item {
+    background: #fefaf5;
+    border: 1px solid #f0e0c0;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .phrase-item .cn { font-size: 14px; font-weight: 600; color: #2c2416; }
+  .phrase-item .ko { font-size: 16px; font-weight: 600; color: #1a3a4a; margin: 4px 0; }
+  .phrase-item .rm { font-size: 12px; color: #8b7e6a; }
+
+  /* ===== Day Card ===== */
+  .day-card {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .day-head {
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0ebe0;
+    background: #fafaf8;
+  }
+  .day-label { display: flex; align-items: center; gap: 12px; }
+  .day-num {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .day-num.arrive { background: #9e9e9e; }
+  .day-num.meet   { background: linear-gradient(135deg, #d4a060, #e8c88a); }
+  .day-num.east   { background: linear-gradient(135deg, #e8833a, #f0a860); }
+  .day-num.west   { background: linear-gradient(135deg, #6b8fbe, #8bb8d0); }
+  .day-num.city   { background: linear-gradient(135deg, #8b6f9e, #b09cc4); }
+
+  .day-title { font-size: 17px; font-weight: 600; color: #1a3a4a; }
+  .day-date  { font-size: 12px; color: #8b7e6a; }
+  .day-theme {
+    font-size: 12px; color: #8b7e6a;
+    padding: 5px 14px; background: #f5f1eb;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .day-body { padding: 18px 22px; }
+
+  /* ===== Stop Row ===== */
+  .stop {
+    display: flex; align-items: flex-start;
+    gap: 14px; padding: 12px 0;
+    border-bottom: 1px solid #f5f1eb;
+  }
+  .stop:last-child { border-bottom: none; }
+  .stop-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+    background: #d4c8b0;
+  }
+  .stop-num.hl { background: #e8833a; }
+  .stop-info { flex: 1; }
+  .stop-info .cn {
+    font-size: 16px; font-weight: 700; color: #2c2416;
+  }
+  .stop-info .ko {
+    font-size: 17px; font-weight: 600; color: #1a3a4a;
+    margin-top: 2px;
+  }
+  .stop-info .rm {
+    font-size: 13px; color: #8b7e6a;
+  }
+  .stop-info .note {
+    font-size: 12px; color: #6b5e4a;
+    margin-top: 4px; line-height: 1.5;
+  }
+  .stop-time {
+    font-size: 13px; font-weight: 600;
+    color: #e8833a; white-space: nowrap;
+    padding-top: 2px;
+    min-width: 42px;
+    text-align: right;
+  }
+  .stop-time.night { color: #6b8fbe; }
+
+  /* Tags */
+  .tag {
+    display: inline-block; font-size: 10px; padding: 1px 7px;
+    border-radius: 3px; margin-left: 4px; vertical-align: middle;
+  }
+  .tag-must  { background: #fef0e5; color: #d4782f; }
+  .tag-food  { background: #f0e8f0; color: #8b6f9e; }
+  .tag-photo { background: #e8f0f8; color: #5a8aaf; }
+  .tag-meet  { background: #fff8e8; color: #b08030; }
+
+  .section-title {
+    font-size: 18px; font-weight: 600;
+    color: #1a3a4a; margin: 28px 0 14px;
+    padding-left: 10px; border-left: 3px solid #e8833a;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center; padding: 32px 0 16px;
+    color: #8b7e6a; font-size: 12px;
+    border-top: 1px solid #e0dcd5; margin-top: 28px;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 500px) {
+    .phrase-grid { grid-template-columns: 1fr; }
+    .day-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .page { padding: 12px; }
+    .header { padding: 24px 18px; }
+    .header h1 { font-size: 22px; }
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    @page { size: A4; margin: 12mm 14mm 12mm 14mm; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: #fff; font-size: 12px; line-height: 1.5; }
+    .page { max-width: 100%; padding: 0; }
+    .header { padding: 24px 20px; margin-bottom: 16px; }
+    .header h1 { font-size: 22px; }
+    .header h2 { font-size: 16px; }
+    .phrase-card { padding: 14px; margin-bottom: 14px; page-break-inside: avoid; }
+    .phrase-grid { gap: 6px; }
+    .phrase-item { padding: 8px 10px; }
+    .phrase-item .cn { font-size: 12px; }
+    .phrase-item .ko { font-size: 14px; }
+    .phrase-item .rm { font-size: 10px; }
+    .day-card { box-shadow: none; border: 1px solid #e0dcd5; margin-bottom: 12px; }
+    .day-head { padding: 10px 16px; }
+    .day-num { width: 28px; height: 28px; font-size: 14px; }
+    .day-title { font-size: 14px; }
+    .day-body { padding: 12px 16px; }
+    .stop { padding: 8px 0; gap: 10px; }
+    .stop-num { width: 22px; height: 22px; font-size: 11px; }
+    .stop-info .cn { font-size: 13px; }
+    .stop-info .ko { font-size: 14px; }
+    .stop-info .rm { font-size: 11px; }
+    .stop-info .note { font-size: 10px; }
+    .stop-time { font-size: 11px; min-width: 34px; }
+    .section-title { font-size: 15px; margin: 18px 0 10px; }
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ========== HEADER ========== -->
+<div class="header">
+  <h1>제주도 여행 일정</h1>
+  <h2>济州岛深度游 · 司机行程单</h2>
+  <div class="hotel">
+    🏨 <span class="ko">호텔 휘슬락</span> (Hotel Whistlelark)<br>
+    제주시 탑동해변 / 济州市 塔洞海滨<br>
+    6.23 화 — 6.26 금 (3晚)
+  </div>
+</div>
+
+<!-- ========== 常用语 ========== -->
+<div class="phrase-card">
+  <h3>🗣️ 常用韩语 / 자주 쓰는 말</h3>
+  <div class="phrase-grid">
+    <div class="phrase-item">
+      <div class="cn">请去 ○○</div>
+      <div class="ko">○○로 가주세요</div>
+      <div class="rm">○○-ro ga-ju-se-yo</div>
+    </div>
+    <div class="phrase-item">
+      <div class="cn">请在这里停一下</div>
+      <div class="ko">여기 잠시 세워주세요</div>
+      <div class="rm">yeo-gi jam-si se-wo-ju-se-yo</div>
+    </div>
+    <div class="phrase-item">
+      <div class="cn">请等一下</div>
+      <div class="ko">잠시만 기다려주세요</div>
+      <div class="rm">jam-si-man gi-da-ryeo-ju-se-yo</div>
+    </div>
+    <div class="phrase-item">
+      <div class="cn">回酒店</div>
+      <div class="ko">호텔로 돌아가주세요</div>
+      <div class="rm">ho-tel-lo do-ra-ga-ju-se-yo</div>
+    </div>
+    <div class="phrase-item">
+      <div class="cn">左转 / 右转 / 直走</div>
+      <div class="ko">좌회전 / 우회전 / 직진</div>
+      <div class="rm">jwa-hoe-jeon / u-hoe-jeon / jik-jin</div>
+    </div>
+    <div class="phrase-item">
+      <div class="cn">辛苦您了！</div>
+      <div class="ko">수고하셨습니다!</div>
+      <div class="rm">su-go-ha-syeot-seum-ni-da</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 行程概览 ========== -->
+<h2 class="section-title">📋 일정 요약 / 行程概览</h2>
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
+  <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0ebe0;">
+    <strong>화 周二 6.23</strong><br>
+    <span style="font-size:13px; color:#8b7e6a;">호텔 주변 / 酒店周边<br>오후·저녁 회의 / 午晚会议<br>도보 이동 / 步行</span>
+  </div>
+  <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0ebe0;">
+    <strong>수 周三 6.24</strong><br>
+    <span style="font-size:13px; color:#8b7e6a;">동부 해안 / 东部海岸<br>🚗 종일 렌트 / 全天用车<br>9:00 — 19:00</span>
+  </div>
+  <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0ebe0;">
+    <strong>목 周四 6.25</strong><br>
+    <span style="font-size:13px; color:#8b7e6a;">서부 해안 / 西部海岸<br>🚗 종일 렌트 / 全天用车<br>9:30 — 20:00</span>
+  </div>
+  <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0ebe0;">
+    <strong>금 周五 6.26</strong><br>
+    <span style="font-size:13px; color:#8b7e6a;">공항 이동 / 去机场<br>🚗 11:00 호텔 출발<br>호텔 → 공항 (15분)</span>
+  </div>
+</div>
+
+<!-- ========== Day 0: 到达 ========== -->
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-label">
+      <div class="day-num arrive">月</div>
+      <div>
+        <div class="day-title">도착 / 到达 · 6.22 周一晚</div>
+        <div class="day-date">제주국제공항 → 호텔 (15분)</div>
+      </div>
+    </div>
+    <div class="day-theme">✈️ 공항 픽업</div>
+  </div>
+  <div class="day-body">
+    <div class="stop">
+      <div class="stop-num hl">1</div>
+      <div class="stop-info">
+        <div class="cn">济州国际机场 ✈️</div>
+        <div class="ko">제주국제공항</div>
+        <div class="rm">Je-ju Guk-je Gong-hang</div>
+        <div class="note">接机后直接回酒店 · 호텔로 직행</div>
+      </div>
+      <div class="stop-time night">저녁<br>晚</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">2</div>
+      <div class="stop-info">
+        <div class="cn">口哨云雀酒店 🏨 (全程入住)</div>
+        <div class="ko">호텔 휘슬락</div>
+        <div class="rm">Ho-tel Hwi-seul-lak</div>
+        <div class="note">제주시 탑동해변 / 济州市塔洞海边 · 3박 내내 이 호텔</div>
+      </div>
+      <div class="stop-time night">저녁</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Day 1: 周二 酒店周边 ========== -->
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-label">
+      <div class="day-num meet">1</div>
+      <div>
+        <div class="day-title">호텔 주변 · 酒店周边 <span class="tag tag-meet">회의</span></div>
+        <div class="day-date">화요일 6.23 · 오후/저녁 회의 있음</div>
+      </div>
+    </div>
+    <div class="day-theme">🚶 도보 산책</div>
+  </div>
+  <div class="day-body">
+    <div class="stop">
+      <div class="stop-num hl">1</div>
+      <div class="stop-info">
+        <div class="cn">东门市场 <span class="tag tag-food">早餐</span></div>
+        <div class="ko">동문시장</div>
+        <div class="rm">Dong-mun Si-jang</div>
+        <div class="note">호텔에서 도보 9분 · 현지 아침식사 / 酒店步行9分钟，吃本土早餐</div>
+      </div>
+      <div class="stop-time">09:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">2</div>
+      <div class="stop-info">
+        <div class="cn">龙头岩 🐲</div>
+        <div class="ko">용두암</div>
+        <div class="rm">Yong-du-am</div>
+        <div class="note">도보 15분 · 제주의 상징 / 步行15分钟，济州地标</div>
+      </div>
+      <div class="stop-time">10:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">—</div>
+      <div class="stop-info">
+        <div class="cn" style="font-weight:500; color:#b08030;">午餐会议 + 下午会议 / 점심·오후 회의</div>
+        <div class="note" style="color:#b08030;">호텔 근처 식당 · 酒店附近餐厅</div>
+      </div>
+      <div class="stop-time" style="color:#b08030;">12:00<br>18:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">3</div>
+      <div class="stop-info">
+        <div class="cn">东门市场夜市 🌙</div>
+        <div class="ko">동문시장 야시장</div>
+        <div class="rm">Dong-mun Si-jang Ya-si-jang</div>
+        <div class="note">회의 후 · 야식 천국! 흑돼지꼬치 추천 / 会后逛夜市，黑猪肉串必吃</div>
+      </div>
+      <div class="stop-time night">저녁</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Day 2: 周三 东部 ========== -->
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-label">
+      <div class="day-num east">2</div>
+      <div>
+        <div class="day-title">동부 · 东部世界遗产海岸</div>
+        <div class="day-date">수요일 6.24 · 🚗 종일 · 약 100km</div>
+      </div>
+    </div>
+    <div class="day-theme">🌅 유네스코</div>
+  </div>
+  <div class="day-body">
+    <div class="stop">
+      <div class="stop-num">🚗</div>
+      <div class="stop-info">
+        <div class="cn">酒店出发 → 东部 (约1小时)</div>
+        <div class="ko">호텔 출발 → 동부 (약 1시간)</div>
+        <div class="rm">Sehwa-ri / Woljeong-ri 해변 경유 추천</div>
+        <div class="note">경유 추천: 세화리 / 월정리 해변 (잠시 사진) · 途经细花里/月汀里海滩可短暂停留</div>
+      </div>
+      <div class="stop-time">09:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">1</div>
+      <div class="stop-info">
+        <div class="cn">城山日出峰 <span class="tag tag-must">必去</span> <span class="tag tag-photo">世界遗产</span></div>
+        <div class="ko">성산일출봉</div>
+        <div class="rm">Seong-san Il-chul-bong</div>
+        <div class="note">유네스코 세계자연유산 · 등산 30분 · 해녀 공연(11:30/13:30) · 约2小时</div>
+      </div>
+      <div class="stop-time">10:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">2</div>
+      <div class="stop-info">
+        <div class="cn">城山港午餐 <span class="tag tag-food">海鲜</span></div>
+        <div class="ko">성산항 점심 (전복죽, 해물뚝배기)</div>
+        <div class="rm">Seong-san-hang · Jeon-bok-juk</div>
+        <div class="note">전복죽(鲍鱼粥) 추천 / 推荐鲍鱼粥、海鲜锅</div>
+      </div>
+      <div class="stop-time">12:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">3</div>
+      <div class="stop-info">
+        <div class="cn">涉地可支 <span class="tag tag-must">必去</span></div>
+        <div class="ko">섭지코지</div>
+        <div class="rm">Seop-ji-ko-ji</div>
+        <div class="note">절벽+검은 바위+에메랄드 바다 · 드라마 촬영지 · 유리하우스(안도 다다오) · 1.5-2시간</div>
+      </div>
+      <div class="stop-time">14:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">4</div>
+      <div class="stop-info">
+        <div class="cn">牛岛 (天气允许) ⛴️ 或 城邑民俗村</div>
+        <div class="ko">우도 (날씨 확인) 또는 성읍민속마을</div>
+        <div class="rm">U-do / Seong-eup Min-sok Ma-eul</div>
+        <div class="note">우도 페리 막차 17-18시 · 파도 심하면 성읍민속마을로 대체<br>牛岛渡轮末班17-18点 · 风浪大则改去城邑民俗村</div>
+      </div>
+      <div class="stop-time">16:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">🍽️</div>
+      <div class="stop-info">
+        <div class="cn">晚餐：济州黑猪肉 BBQ</div>
+        <div class="ko">저녁: 흑돼지 구이</div>
+        <div class="rm">Heuk-dwae-ji Gu-i</div>
+        <div class="note">추천: 흑돈가 / 명진전복 · 推荐：黑豚家 / Myeongjin Jeonbok</div>
+      </div>
+      <div class="stop-time night">19:00</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Day 3: 周四 西部 ========== -->
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-label">
+      <div class="day-num west">3</div>
+      <div>
+        <div class="day-title">서부 · 西部绣球花+海岸治愈</div>
+        <div class="day-date">목요일 6.25 · 🚗 종일 · 약 80km</div>
+      </div>
+    </div>
+    <div class="day-theme">🌸☕ 힐링데이</div>
+  </div>
+  <div class="day-body">
+    <div class="stop">
+      <div class="stop-num hl">1</div>
+      <div class="stop-info">
+        <div class="cn">山茶花之丘 / 绣球花海 🌸 <span class="tag tag-must">必去！亮点！</span></div>
+        <div class="ko">카멜리아힐</div>
+        <div class="rm">Ka-mel-li-a Hil (Camellia Hill)</div>
+        <div class="note">6월 수국 만개! 천 그루 이상 · 2-3시간 천천히 · 여행의 하이라이트!<br>6月绣球花全盛期！千株花海，此行最高光，慢慢逛2-3小时</div>
+      </div>
+      <div class="stop-time">09:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">2</div>
+      <div class="stop-info">
+        <div class="cn">西归浦每日偶来市场 <span class="tag tag-food">午餐</span></div>
+        <div class="ko">서귀포 매일올레시장</div>
+        <div class="rm">Seo-gwi-po Mae-il Ol-le Si-jang</div>
+        <div class="note">흑돼지꼬치 + 한라봉주스 + 구운전복 / 黑猪肉串+汉拿峰橙汁+烤鲍鱼</div>
+      </div>
+      <div class="stop-time">12:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">3</div>
+      <div class="stop-info">
+        <div class="cn">O'sulloc 雪绿茶博物馆 (可选)</div>
+        <div class="ko">오설록 티뮤지엄</div>
+        <div class="rm">O-sul-lok Ti-myu-ji-eom</div>
+        <div class="note">녹차밭+말차아이스크림 · 시간 없으면 스킵 / 绿茶园+抹茶冰淇淋，可选</div>
+      </div>
+      <div class="stop-time">14:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">4</div>
+      <div class="stop-info">
+        <div class="cn">涯月咖啡街 ☕ <span class="tag tag-must">必去</span></div>
+        <div class="ko">애월 해안도로 카페거리</div>
+        <div class="rm">Ae-wol Hae-an-do-ro Ka-pe-geo-ri</div>
+        <div class="note">추천: 봄날카페 / 프리미엄카페 · 제주 최고의 해안카페<br>推荐：春日咖啡 Bomnal / Premium Café · 济州最美海岸咖啡馆</div>
+      </div>
+      <div class="stop-time">15:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">5</div>
+      <div class="stop-info">
+        <div class="cn">涯月日落 🌅</div>
+        <div class="ko">애월 일몰</div>
+        <div class="rm">Ae-wol Il-mol</div>
+        <div class="note">카페에서 해질녘까지 · 제주 최고의 노을 / 咖啡馆待到日落，涯月日落是济州最美</div>
+      </div>
+      <div class="stop-time night">일몰</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">🍽️</div>
+      <div class="stop-info">
+        <div class="cn">晚餐：辣炖带鱼 或 回市区吃银带鱼</div>
+        <div class="ko">저녁: 갈치조림 / 숙성도 갈치구이</div>
+        <div class="rm">Gal-chi Jo-rim / Suk-seong-do Gal-chi</div>
+      </div>
+      <div class="stop-time night">저녁</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Day 4: 周五 收尾 ========== -->
+<div class="day-card">
+  <div class="day-head">
+    <div class="day-label">
+      <div class="day-num city">4</div>
+      <div>
+        <div class="day-title">마무리 · 市区收尾</div>
+        <div class="day-date">금요일 6.26 · 오전만</div>
+      </div>
+    </div>
+    <div class="day-theme">🛍️✈️</div>
+  </div>
+  <div class="day-body">
+    <div class="stop">
+      <div class="stop-num">1</div>
+      <div class="stop-info">
+        <div class="cn">塔洞海岸晨间散步</div>
+        <div class="ko">탑동해변 아침 산책</div>
+        <div class="rm">Tap-dong Hae-byeon A-chim San-chaek</div>
+        <div class="note">호텔 바로 아래 / 酒店楼下</div>
+      </div>
+      <div class="stop-time">08:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">2</div>
+      <div class="stop-info">
+        <div class="cn">东门市场 最后采购 <span class="tag tag-food">手信</span></div>
+        <div class="ko">동문시장 기념품 쇼핑</div>
+        <div class="rm">Dong-mun Si-jang</div>
+        <div class="note">한라봉초콜릿, 미역, 감귤주스 등 / 橘子巧克力、海苔等手信</div>
+      </div>
+      <div class="stop-time">09:00</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num">3</div>
+      <div class="stop-info">
+        <div class="cn">回酒店收拾行李退房</div>
+        <div class="ko">호텔 체크아웃</div>
+        <div class="rm">Ho-tel Che-keu-a-ut</div>
+      </div>
+      <div class="stop-time">10:30</div>
+    </div>
+    <div class="stop">
+      <div class="stop-num hl">4</div>
+      <div class="stop-info">
+        <div class="cn">前往济州国际机场 ✈️</div>
+        <div class="ko">제주국제공항으로 출발</div>
+        <div class="rm">Je-ju Guk-je Gong-hang</div>
+        <div class="note">호텔 → 공항 약 15분 / 酒店到机场约15分钟</div>
+      </div>
+      <div class="stop-time">11:00</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Key Landmarks Reference ========== -->
+<h2 class="section-title">📍 주요 장소 발음 / 关键地名发音表</h2>
+<table style="width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 8px rgba(0,0,0,0.06);">
+  <thead>
+    <tr style="background:#f5f1eb;">
+      <th style="padding:10px 14px; text-align:left; font-size:13px;">中文</th>
+      <th style="padding:10px 14px; text-align:left; font-size:13px;">한국어</th>
+      <th style="padding:10px 14px; text-align:left; font-size:13px;">발음 (罗马音)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">济州岛</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">제주도</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Je-ju-do</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">济州国际机场</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">제주국제공항</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Je-ju Guk-je Gong-hang</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">口哨云雀酒店</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">호텔 휘슬락</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Ho-tel Hwi-seul-lak</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">龙头岩</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">용두암</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Yong-du-am</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">东门市场</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">동문시장</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Dong-mun Si-jang</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">城山日出峰</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">성산일출봉</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Seong-san Il-chul-bong</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">涉地可支</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">섭지코지</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Seop-ji-ko-ji</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">牛岛</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">우도</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">U-do</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">山茶花之丘</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">카멜리아힐</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Ka-mel-li-a Hil</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">西归浦偶来市场</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">서귀포 매일올레시장</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Seo-gwi-po Mae-il Ol-le Si-jang</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">涯月海岸公路</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">애월 해안도로</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Ae-wol Hae-an-do-ro</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">汉拿山</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">한라산</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Hal-la-san</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">城邑民俗村</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">성읍민속마을</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Seong-eup Min-sok Ma-eul</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">黑猪肉</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">흑돼지</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Heuk-dwae-ji</td></tr>
+    <tr><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0;">鲍鱼粥</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; font-weight:600;">전복죽</td><td style="padding:9px 14px; border-bottom:1px solid #f0ebe0; color:#8b7e6a;">Jeon-bok-juk</td></tr>
+    <tr><td style="padding:9px 14px;">汉拿峰柑橘</td><td style="padding:9px 14px; font-weight:600;">한라봉</td><td style="padding:9px 14px; color:#8b7e6a;">Hal-la-bong</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <p>제주도 여행 · 济州岛深度游 · 2026.6.22-6.26</p>
+  <p style="margin-top:4px; opacity:0.6;">운전기사님, 수고해주셔서 감사합니다! 🙇</p>
+  <p style="margin-top:4px; opacity:0.5;">司机师傅，辛苦您了，谢谢！</p>
+</div>
+
+</div>
+</body>
+</html>
